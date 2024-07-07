@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-
-function EnquiryList(){
-	let dispatch = useDispatch();
-    let { enquiryList } = useSelector((state) => state.enquirylist);
+function EnquiryList(props){
+	let { enquiryList } = props;
+	console.log(enquiryList);
 	return (
 	<>
 		<h3 className="py-4">Enquiry List</h3>

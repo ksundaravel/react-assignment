@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
-function CourseList(){
-	let dispatch = useDispatch();
-    let { courseList } = useSelector((state) => state.courselist);
+function CourseList(props){
+	let { courseList } = props;
 	return (
 	<>
 		<h3 className="py-4">Course List</h3>

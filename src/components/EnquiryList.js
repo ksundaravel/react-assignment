@@ -1,8 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setEnquiryList } from "../redux/enquiry.slice";
 
+let enquiryApiURL = "http://localhost:4000/enquiry";
 function EnquiryList(){
 	let dispatch = useDispatch();
     let { enquiryList } = useSelector((state) => state.enquirylist);
+	
+	useEffect(()=> {
+		fetch(enquiryApiURL).then(res => res.json()).then(res => {dispatch(setEnquiryList(res))});
+	},[]);
+	
 	return (
 	<>
 		<h3 className="py-4">Enquiry List</h3>
@@ -20,7 +28,7 @@ function EnquiryList(){
 		  {
 			  enquiryList.map((enquiry, index) => {
 				return (
-				<tr>
+				<tr key={index}>
 				  <th scope="row">{++index}</th>
 				  <td>{enquiry.name}</td>
 				  <td>{enquiry.coursename}</td>

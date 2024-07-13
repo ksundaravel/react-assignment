@@ -1,9 +1,32 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { setCourseList } from "../redux/course.slice";
+
+/*const data=[
+  {
+    "id": "1",
+    "name": "Angular"
+  }
+];*/ 
+
+let courseApiURL = "http://localhost:4000/courses";
+
+
+
 
 function CourseList(){
 	let dispatch = useDispatch();
+	let data = [];
+	  
     let { courseList } = useSelector((state) => state.courselist);
+	
+	useEffect(()=> {
+		fetch(courseApiURL).then(res => res.json()).then(res => {dispatch(setCourseList(res))});
+	},[]);
+
+	//dispatch(setCourseList(data));
+  
 	return (
 	<>
 		<h3 className="py-4">Course List</h3>

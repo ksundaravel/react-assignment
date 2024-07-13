@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { addEnquiry } from "../redux/enquiry.slice";
 import { useDispatch } from "react-redux";
+import { Navigate,useNavigate } from "react-router-dom";
 
- 
+let enquiryApiURL = "http://localhost:4000/enquiry"; 
 function AddEnquiry() {	
+  let navigate = useNavigate();
   let dispatch = useDispatch();
   let { courseId } = useParams();
   
@@ -22,16 +24,15 @@ function AddEnquiry() {
 		coursename,
 		email,
 		comments
-	};
+	};	
 	
-	dispatch(addEnquiry(newEnquiry));
-	
-	/*const postConfig = {
+		
+	const postConfig = {
 		method: 'POST',
 		headers: {'content-type':'application/json'},
 		body: JSON.stringify(newEnquiry)
 	}
-	fetch(enquiryApiURL,postConfig).then(res => res.json()).then(course => {alert("Added successfully:",course);navigate('/');});*/
+	fetch(enquiryApiURL,postConfig).then(res => res.json()).then(course => {alert("Added successfully",course);navigate('/view-enquiry');});
 	//setNewEnquiry([...enquiryList,newEnquiry]);
 	//alert("Added successfully");
 	
